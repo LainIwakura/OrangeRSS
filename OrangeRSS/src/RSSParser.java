@@ -3,4 +3,5 @@ import java.util.*;
 
 public class RSSParser {
 
+	public String hurrrr = "Hurrrrrrrrrr!";
 }
