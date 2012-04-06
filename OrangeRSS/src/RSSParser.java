@@ -2,9 +2,7 @@ import java.io.*;
 import java.util.*;
 
 public class RSSParser {
-
-	public String hurrrr = "Hurrrrrrrrrr!";
-	public int x = 2;
+	private String feed_url;
+	private ArrayList<String> items = new ArrayList<String>();
 	
-	public double dicks = 3.141597;
 }
