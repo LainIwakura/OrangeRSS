@@ -1,3 +1,7 @@
+import java.util.Scanner;
+
+import javax.xml.parsers.ParserConfigurationException;
+
 
 public class rss_tester {
 
@@ -5,8 +9,17 @@ public class rss_tester {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		Scanner input = new Scanner(System.in);
+		System.out.println("Enter a feed url: ");
+		String feed = input.next();
+		RSSParser parser = null;
+		try {
+			parser = new RSSParser(feed);
+		} catch (ParserConfigurationException e) {
+			e.printStackTrace();
+		}
+		parser.parseDocument();
+		parser.printFeedItems();
 	}
 
 }
