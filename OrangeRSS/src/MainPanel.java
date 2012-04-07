@@ -4,7 +4,7 @@
  * OrangeRss
  */
 
-import javax.swing
+import javax.swing.JPanel;
 
 public class MainPanel extends JPanel {
 	

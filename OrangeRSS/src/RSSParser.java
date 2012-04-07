@@ -152,4 +152,9 @@ public class RSSParser {
 	{
 		return this.feed_url;
 	}
+	
+	public boolean isValid(String url)
+	{
+		UrlValidator urlValid = 
+	}
 }
