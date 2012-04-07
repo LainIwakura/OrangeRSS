@@ -15,6 +15,8 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import org.xml.sax.SAXException;
 
+import org.apache.commons.validator.routines.UrlValidator;
+
 public class RSSParser {
 	private String feed_url;
 	private ArrayList<FeedItem> items = new ArrayList<FeedItem>();
@@ -153,8 +155,9 @@ public class RSSParser {
 		return this.feed_url;
 	}
 	
-	public boolean isValid(String url)
+	public static boolean isValid(String url)
 	{
-		UrlValidator urlValid = 
+		UrlValidator urlValid = new UrlValidator();
+		return urlValid.isValid(url);
 	}
 }

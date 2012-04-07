@@ -9,7 +9,7 @@ public class rss_tester {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		Scanner input = new Scanner(System.in);
+		/*Scanner input = new Scanner(System.in);
 		System.out.println("Enter a feed url: ");
 		String feed = input.next();
 		RSSParser parser = null;
@@ -20,6 +20,8 @@ public class rss_tester {
 		}
 		parser.parseDocument();
 		parser.printFeedItems();
+		*/
+		System.out.println(RSSParser.isValid("http://www.google.com"));
 	}
 
 }
