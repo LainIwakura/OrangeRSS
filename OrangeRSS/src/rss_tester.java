@@ -5,10 +5,9 @@ import javax.xml.parsers.ParserConfigurationException;
 
 public class rss_tester {
 
-	/**
-	 * @param args
-	 */
 	public static void main(String[] args) {
+		MainPanel frame = new MainPanel();
+		/*
 		Scanner input = new Scanner(System.in);
 		System.out.println("Enter a feed url: ");
 		String feed = input.next();
@@ -19,7 +18,7 @@ public class rss_tester {
 			e.printStackTrace();
 		}
 		parser.parseDocument();
-		parser.printFeedItems();
+		parser.printFeedItems();*/
 	}
 
 }

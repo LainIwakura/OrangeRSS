@@ -155,6 +155,28 @@ public class RSSParser {
 		return this.feed_url;
 	}
 	
+	public ArrayList<String> getFeedDescriptions()
+	{
+		ArrayList<String> descriptions = new ArrayList<String>();
+		for (FeedItem i : items)
+		{
+			descriptions.add(i.getDescription());
+		}
+		
+		return descriptions;
+	}
+	
+	public ArrayList<String> getTitles()
+	{
+		ArrayList<String> titles = new ArrayList<String>();
+		for (FeedItem i : items)
+		{
+			titles.add(i.getTitle());
+		}
+		
+		return titles;
+	}
+	
 	public static boolean isValid(String url)
 	{
 		UrlValidator urlValid = new UrlValidator();

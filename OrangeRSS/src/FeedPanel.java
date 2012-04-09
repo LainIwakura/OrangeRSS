@@ -1,4 +1,7 @@
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -22,19 +25,36 @@ public class FeedPanel extends JPanel {
         JButton removeRSS = new JButton("Remove RSS");                                                                                                                                                                                                                                                                         
         JButton openFeed = new JButton("OpenFeed");                                                                                                                                                                                                                                                                            
         JList feedList = new JList(listModel);                                                                                                                                                                                                                                                                                 
-        ArrayList<String> feedNames;                                                                                                                                                                                                                                                                                           
+        ArrayList<String> feedNames = new ArrayList<String>();                                                                                                                                                                                                                                                                                           
         BufferedWriter output;                                                                                                                                                                                                                                                                                                 
         BufferedReader input;                                                                                                                                                                                                                                                                                                  
-        MainPanel main;                                                                                                                                                                                                                                                                                                        
+        MainPanel main;                  
+        JPanel top = new JPanel();
                                                                                                                                                                                                                                                                                                                                
         public FeedPanel(MainPanel parent) throws IOException                                                                                                                                                                                                                                                                  
-        {                                                                                                                                                                                                                                                                                                                      
+        {               
+        		top.setLayout(new FlowLayout());
+        		top.add(addRSS);
+        		top.add(removeRSS);
+        		top.add(openFeed);
+        		top.add(save);
+        		top.setSize(320, 50);
+        		top.setBackground(Color.WHITE);
+        		this.add(top,BorderLayout.NORTH);
+        		this.add(feedList,BorderLayout.CENTER);
+        		this.setVisible(true);
+        		
                 main = parent;                                                                                                                                                                                                                                                                                                 
                 //################load begin                                                                                                                                                                                                                                                                                   
-                                                                                                                                                                                                                                                                                                                               
-                input = new BufferedReader(new FileReader("feeds.txt"));                                                                                                                                                                                                                                                       
-                //if not empty file                                                                                                                                                                                                                                                                                            
-                load();                                                                                                                                                                                                                                                                                                        
+                             
+                File inputFile = new File("feeds.txt");
+                if (!inputFile.exists()) {
+                	inputFile.createNewFile();
+                }
+                input = new BufferedReader(new FileReader(inputFile));                                                                                                                                                                                                                                                       
+                if (input.ready()) {                                                                                                                                                                                                                                                                                         
+                	load();             
+                }
                 //                                                                                                                                                                                                                                                                                                             
                 input.close();                                                                                                                                                                                                                                                                                                 
                                                                                                                                                                                                                                                                                                                                
@@ -95,7 +115,7 @@ public class FeedPanel extends JPanel {
                     }                                                                                                                                                                                                                                                                                                      
                                                                                                                                                                                                                                                                                                                            
             });                                                                                                                                                                                                                                                                                                            
-                                                                                                                                                                                                                                                                                                                           
+                                                                                                                                                                                                                                                                                                                          
                                                                                                                                                                                                                                                                                                                            
     }                                                                                                                                                                                                                                                                                                                      
                                                                                                                                                                                                                                                                                                                            
@@ -105,7 +125,7 @@ public class FeedPanel extends JPanel {
             String addURL,addName;                                                                                                                                                                                                                                                                                         
             addURL = JOptionPane.showInputDialog("Enter a URL");                                                                                                                                                                                                                                                           
             //do a check for if it's valid                                                                                                                                                                                                                                                                                 
-            if (addURL==""/*valid*/)                                                                                                                                                                                                                                                                                       
+            if (RSSParser.isValid(addURL))                                                                                                                                                                                                                                                                                       
             {                                                                                                                                                                                                                                                                                                              
                     feedNames.add(addURL);//for accessing url names                                                                                                                                                                                                                                                        
                     //add the name of the feed to the list                                                                                                                                                                                                                                                                 
@@ -145,7 +165,8 @@ public class FeedPanel extends JPanel {
                     //to line and add a new line character                                                                                                                                                                                                                                                                 
                     line += listModel.get(i) + "," + feedNames.get(i) + "\n";                                                                                                                                                                                                                                              
             }                                                                                                                                                                                                                                                                                                              
-            output.write(line);                                                                                                                                                                                                                                                                                            
+            output.write(line); 
+            output.close();
     }                                                                                                                                                                                                                                                                                                                      
                                                                                                                                                                                                                                                                                                                            
     public void openFeed(int index)                                                                                                                                                                                                                                                                                        
